@@ -187,3 +187,27 @@ void heap_deallocate(struct Heap *heap, const struct Pointer *pointer) {
     }
   }
 }
+
+enum StatusCode heap_get_pointer_content(const struct Heap* heap, const struct Pointer* pointer, void* content) {
+  if (!heap || !pointer)
+    return STATUS_BAD_ARG;
+
+  if (pointer->size_bytes == 0)
+    return STATUS_BAD_ARG;
+
+  memcpy(content, &heap->byte_pool[pointer->heap_start_idx], pointer->size_bytes);
+
+  return STATUS_OK;
+}
+
+enum StatusCode heap_write_pointer_content(struct Heap* heap, const struct Pointer* pointer, const void* content) {
+  if (!heap || !pointer)
+    return STATUS_BAD_ARG;
+
+  if (pointer->size_bytes == 0)
+    return STATUS_BAD_ARG;
+
+  memcpy(&heap->byte_pool[pointer->heap_start_idx], content, pointer->size_bytes);
+
+  return STATUS_OK;
+}

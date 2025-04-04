@@ -56,4 +56,24 @@ enum StatusCode heap_allocate(struct Heap* heap, size_t size_bytes, struct Point
  */
 void heap_deallocate(struct Heap* heap, const struct Pointer* pointer);
 
+/**
+ * Fetch the start address for a given pointer in the heap.
+ *
+ * @param heap A heap struct passed by address
+ * @param pointer The pointer to fetch content for - must have pointer->size_bytes > 0
+ * @param content Pointer to write content into - needs to be at least pointer->size_bytes long.
+ * @return STATUS_BAD_ARG if heap/pointer is invalid, STATUS_OK otherwise.
+ */
+enum StatusCode heap_get_pointer_content(const struct Heap* heap, const struct Pointer* pointer, void* content);
+
+/**
+ * Writes content into the heap pointed to by a pointer.
+ *
+ * @param heap A heap struct passed by address
+ * @param pointer The pointer to write into
+ * @param content The content to write - assumed to be of length pointer->size_bytes
+ * @return STATUS_BAD_ARG if heap/pointer is invalid, STATUS_OK otherwise
+ */
+enum StatusCode heap_write_pointer_content(struct Heap* heap, const struct Pointer* pointer, const void* content);
+
 #endif //HEAP_H

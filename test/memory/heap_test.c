@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stdint.h>
 
 #include "memory/heap.h"
 
@@ -136,6 +137,27 @@ void deallocTocreateFragmentedHeap() {
   assert(p3.heap_start_idx == 5u);
 }
 
+void readAndWriteTwoIntegers() {
+  struct Heap heap;
+  heap_init(&heap, 16u);
+
+  struct Pointer p1;
+  heap_allocate(&heap, sizeof(uint16_t), &p1);
+  uint16_t p1_value = 42u;
+  heap_write_pointer_content(&heap, &p1, &p1_value);
+  p1_value = 0u;
+  heap_get_pointer_content(&heap, &p1, &p1_value);
+  assert(p1_value == 42u);
+
+  struct Pointer p2;
+  heap_allocate(&heap, sizeof(int64_t), &p2);
+  int64_t p2_value = -310LL;
+  heap_write_pointer_content(&heap, &p2, &p2_value);
+  p2_value = 0LL;
+  heap_get_pointer_content(&heap, &p2, &p2_value);
+  assert(p2_value == -310LL);
+}
+
 int main() {
   initHeap();
   allocPointersNoHeapResize();
@@ -145,5 +167,6 @@ int main() {
   allocOneLargePointerTooBigForHeapCausingResize();
   deallocPointers();
   deallocTocreateFragmentedHeap();
+  readAndWriteTwoIntegers();
   return 0;
 }
