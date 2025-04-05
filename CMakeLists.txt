@@ -11,3 +11,8 @@ target_link_libraries(toyjvm jvm)
 include(CTest)
 enable_testing()
 add_subdirectory(test)
+
+configure_file(
+        test/resources/compiled_class_files/EmptyMain.class
+        ${CMAKE_BINARY_DIR}/resources/compiled_class_files/EmptyMain.class
+        COPYONLY)
