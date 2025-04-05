@@ -6,6 +6,7 @@ enum StatusCode {
   STATUS_NO_MEM = 1,
   STATUS_BAD_ARG = 2,
   STATUS_IO_FAILED = 3,
+  STATUS_BAD_CLASS_FORMAT = 4,
 };
 
 #endif //STATUS_CODE_H

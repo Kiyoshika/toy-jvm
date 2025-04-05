@@ -1,4 +1,4 @@
-add_executable(class_file_test class_file_test.c)
-target_include_directories(class_file_test PUBLIC ${CMAKE_SOURCE_DIR}/include)
-target_link_libraries(class_file_test jvm)
-add_test(NAME class_file_test COMMAND class_file_test)
+add_executable(empty_main_class_file_test empty_main_class_file_test.c)
+target_include_directories(empty_main_class_file_test PUBLIC ${CMAKE_SOURCE_DIR}/include)
+target_link_libraries(empty_main_class_file_test jvm)
+add_test(NAME empty_main_class_file_test COMMAND empty_main_class_file_test)
