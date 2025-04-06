@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#include "constant_pool/constant_pool_tag.h"
+#include "class_file/constant_pool/constant_pool_tag.h"
 
 struct InterfaceMethodRefInfo {
   enum ConstantPoolTag tag;

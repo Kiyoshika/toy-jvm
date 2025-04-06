@@ -7,7 +7,7 @@
 #include <string.h>
 
 #include "status/status_code.h"
-#include "constant_pool/constant_pool.h"
+#include "class_file/constant_pool/constant_pool.h"
 
 struct ClassFile {
   uint32_t magic_number;
@@ -15,6 +15,12 @@ struct ClassFile {
   uint16_t major_version;
   uint16_t constant_pool_count;
   struct ConstantPool constant_pool;
+  uint16_t access_flags;
+  uint16_t this_class;
+  uint16_t super_class;
+  uint16_t interfaces_count;
+  uint16_t* interfaces; // points to ClassInfo indexes in the constant pool
+  uint16_t fields_count;
 };
 
 enum StatusCode class_file_read(const char* path, struct ClassFile* class_file);

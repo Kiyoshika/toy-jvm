@@ -7,7 +7,7 @@
 #include <string.h>
 
 #include "status/status_code.h"
-#include "constant_pool/constant_pool_item.h"
+#include "class_file/constant_pool/constant_pool_item.h"
 
 struct ConstantPool {
   struct ConstantPoolItem* items;

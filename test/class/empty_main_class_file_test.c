@@ -1,4 +1,5 @@
-#include "class/class_file.h"
+#include "class_file/class_file.h"
+#include "class_file/class_access_flags.h"
 #include <assert.h>
 
 static const char* empty_main_class_path = "../../resources/compiled_class_files/EmptyMain.class";
@@ -100,5 +101,18 @@ int main() {
   assert(strcmp(item->item.utf8_info.bytes, "java/lang/Object") == 0);
   assert(item->item.utf8_info.length == 16u);
 
+  // this is a public class
+  assert((class_file.access_flags & CLASS_ACC_PUBLIC) > 0);
+  // not an enum
+  assert((class_file.access_flags & CLASS_ACC_ENUM) == 0);
+
+  assert(class_file.this_class == 2u); // points to "EmptyMain" class info index
+  assert(class_file.super_class == 3u); // points to "Object" class info index
+
+  // no interfaces
+  assert(class_file.interfaces_count == 0u);
+
+  // no fields
+  assert(class_file.fields_count == 0u);
   return 0;
 }
