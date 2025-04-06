@@ -114,5 +114,7 @@ int main() {
 
   // no fields
   assert(class_file.fields_count == 0u);
+
+  class_file_free(&class_file);
   return 0;
 }

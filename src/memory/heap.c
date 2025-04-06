@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdint.h>
 
 #include "memory/heap.h"
 #include "status/status_code.h"
@@ -195,7 +196,8 @@ enum StatusCode heap_get_pointer_content(const struct Heap* heap, const struct P
   if (pointer->size_bytes == 0)
     return STATUS_BAD_ARG;
 
-  memcpy(content, &heap->byte_pool[pointer->heap_start_idx], pointer->size_bytes);
+  void* pointer_content_src = (uint8_t*)heap->byte_pool + pointer->heap_start_idx;
+  memcpy(content, pointer_content_src, pointer->size_bytes);
 
   return STATUS_OK;
 }
@@ -206,8 +208,8 @@ enum StatusCode heap_write_pointer_content(struct Heap* heap, const struct Point
 
   if (pointer->size_bytes == 0)
     return STATUS_BAD_ARG;
-
-  memcpy(&heap->byte_pool[pointer->heap_start_idx], content, pointer->size_bytes);
+  void* pointer_content_dest = (uint8_t*)heap->byte_pool + pointer->heap_start_idx;
+  memcpy(pointer_content_dest, content, pointer->size_bytes);
 
   return STATUS_OK;
 }
