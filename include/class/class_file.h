@@ -18,5 +18,6 @@ struct ClassFile {
 };
 
 enum StatusCode class_file_read(const char* path, struct ClassFile* class_file);
+void class_file_free(struct ClassFile* class_file);
 
 #endif //CLASS_FILE_H

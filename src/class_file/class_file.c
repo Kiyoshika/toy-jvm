@@ -51,3 +51,10 @@ enum StatusCode class_file_read(const char* path, struct ClassFile* class_file) 
   fclose(file);
   return STATUS_IO_FAILED;
 }
+
+void class_file_free(struct ClassFile* class_file) {
+  if (!class_file)
+    return;
+
+  constant_pool_free(&class_file->constant_pool);
+}

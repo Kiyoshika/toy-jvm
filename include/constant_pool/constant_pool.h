@@ -12,6 +12,7 @@
 struct ConstantPool {
   struct ConstantPoolItem* items;
   size_t capacity;
+  size_t length;
 };
 
 enum StatusCode constant_pool_init(struct ConstantPool* constant_pool, size_t constant_pool_item_count);
