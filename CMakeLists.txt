@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(toy_jvm)
+project(toy_jvm C)
 
 set(CMAKE_C_STANDARD 99)
 

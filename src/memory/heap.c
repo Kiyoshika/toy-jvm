@@ -121,7 +121,7 @@ void heap_free(struct Heap *heap) {
   if (!heap)
     return;
 
-  free(heap->pointers);
+  free(heap->byte_pool);
   heap->byte_pool = NULL;
 
   free(heap->pointers);

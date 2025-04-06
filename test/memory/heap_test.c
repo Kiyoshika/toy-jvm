@@ -13,6 +13,8 @@ void initHeap() {
   assert(heap.pointers != NULL);
   assert(heap.pointers_capacity == 8u);
   assert(heap.write_pointer_idx == 0u);
+
+  heap_free(&heap);
 }
 
 void allocPointersNoHeapResize() {
@@ -36,6 +38,8 @@ void allocPointersNoHeapResize() {
   assert(p2.size_bytes == 6u);
   assert(p2.heap_start_idx == heap.pointers[1].heap_start_idx);
   assert(p2.size_bytes == heap.pointers[1].size_bytes);
+
+  heap_free(&heap);
 }
 
 // allocate multiple pointers on the heap such that the sum of their sizes
@@ -52,6 +56,8 @@ void allocMultiplePointersCausingHeapResize_ExactSize() {
 
   // heap capacity should have doubled
   assert(heap.heap_capacity == 8u);
+
+  heap_free(&heap);
 }
 
 // allocate multiple pointers such that the sum of their sizes
@@ -68,6 +74,8 @@ void allocMultiplePointersCausingHeapResize_SumIsLarger() {
 
   // heap capacity should double
   assert(heap.heap_capacity == 8u);
+
+  heap_free(&heap);
 }
 
 void allocMultiplePointersCausingHeapResize_RequestedSizeLargerThanDoublingRule() {
@@ -82,6 +90,8 @@ void allocMultiplePointersCausingHeapResize_RequestedSizeLargerThanDoublingRule(
 
   // heap capacity should double
   assert(heap.heap_capacity == 32u);
+
+  heap_free(&heap);
 }
 
 void allocOneLargePointerTooBigForHeapCausingResize() {
@@ -92,6 +102,8 @@ void allocOneLargePointerTooBigForHeapCausingResize() {
   heap_allocate(&heap, 10u, &p1);
 
   assert(heap.heap_capacity == 16u);
+
+  heap_free(&heap);
 }
 
 void deallocPointers() {
@@ -111,6 +123,8 @@ void deallocPointers() {
 
   heap_deallocate(&heap, &p2);
   assert(heap.pointers_active == 0u);
+
+  heap_free(&heap);
 }
 
 // create two pointers and deallocate the first one.
@@ -135,6 +149,8 @@ void deallocTocreateFragmentedHeap() {
   // since a pointer of size 4 doesn't fit in the empty two byte space,
   // it gets moved to the end of the second pointer
   assert(p3.heap_start_idx == 5u);
+
+  heap_free(&heap);
 }
 
 void readAndWriteTwoIntegers() {
@@ -156,6 +172,8 @@ void readAndWriteTwoIntegers() {
   p2_value = 0LL;
   heap_get_pointer_content(&heap, &p2, &p2_value);
   assert(p2_value == -310LL);
+
+  heap_free(&heap);
 }
 
 int main() {
