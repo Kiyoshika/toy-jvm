@@ -1,0 +1,17 @@
+name: Check Memory Leaks
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - run: sudo apt-get install -y cmake valgrind
+      - run: mkdir build && cd build
+      - run: cmake -DCMAKE_BUILD_TYPE=Debug ..
+      - run: make
+      - run: cd ..
+      - run: ./check_mem_leaks.sh
