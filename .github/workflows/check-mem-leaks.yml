@@ -9,10 +9,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
-      - run: sudo apt-get install -y cmake valgrind
-      - run: mkdir build
-      - working-directory: ./build
-      - run: cmake -DCMAKE_BUILD_TYPE=Debug ..
-      - run: make
-      - working-directory: ./
-      - run: ./check_mem_leaks.sh
+      - name: Install CMake & Valgrind
+        run: sudo apt-get install -y cmake valgrind
+      - name: Create build directory
+        run: mkdir build
+      - name: Build project
+        working-directory: ./build
+        run: |
+          cmake -DCMAKE_BUILD_TYPE=Debug ..
+          make
+      - name: Check for memory leaks
+        working-directory: ./
+        run: ./check_mem_leaks.sh
