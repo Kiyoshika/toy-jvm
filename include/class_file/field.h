@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#include "class_file/attribute/attribute_info.h"
+
 struct Field {
   uint16_t access_flags;
   uint16_t name_index;

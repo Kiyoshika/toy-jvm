@@ -90,7 +90,7 @@ static bool __resize_heap(
   return true;
 }
 
-enum StatusCode heap_init(struct Heap *heap, size_t size_bytes) {
+enum StatusCode Heap_init(struct Heap *heap, size_t size_bytes) {
   if (!heap || size_bytes == 0)
     return STATUS_BAD_ARG;
 
@@ -118,7 +118,7 @@ enum StatusCode heap_init(struct Heap *heap, size_t size_bytes) {
   return STATUS_OK;
 }
 
-void heap_free(struct Heap *heap) {
+void Heap_free(struct Heap *heap) {
   if (!heap)
     return;
 
@@ -129,7 +129,7 @@ void heap_free(struct Heap *heap) {
   heap->pointers = NULL;
 }
 
-enum StatusCode heap_allocate(
+enum StatusCode Heap_allocate(
   struct Heap* heap,
   size_t size_bytes,
   struct Pointer* new_pointer) {
@@ -169,7 +169,7 @@ enum StatusCode heap_allocate(
   return STATUS_OK;
 }
 
-void heap_deallocate(struct Heap *heap, const struct Pointer *pointer) {
+void Heap_deallocate(struct Heap *heap, const struct Pointer *pointer) {
   if (!heap || !pointer)
     return;
 
@@ -189,7 +189,7 @@ void heap_deallocate(struct Heap *heap, const struct Pointer *pointer) {
   }
 }
 
-enum StatusCode heap_get_pointer_content(const struct Heap* heap, const struct Pointer* pointer, void* content) {
+enum StatusCode Heap_get_pointer_content(const struct Heap* heap, const struct Pointer* pointer, void* content) {
   if (!heap || !pointer)
     return STATUS_BAD_ARG;
 
@@ -202,7 +202,7 @@ enum StatusCode heap_get_pointer_content(const struct Heap* heap, const struct P
   return STATUS_OK;
 }
 
-enum StatusCode heap_write_pointer_content(struct Heap* heap, const struct Pointer* pointer, const void* content) {
+enum StatusCode Heap_write_pointer_content(struct Heap* heap, const struct Pointer* pointer, const void* content) {
   if (!heap || !pointer)
     return STATUS_BAD_ARG;
 
