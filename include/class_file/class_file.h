@@ -1,15 +1,16 @@
 #ifndef CLASS_FILE_H
 #define CLASS_FILE_H
 
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 
-#include "status/status_code.h"
 #include "class_file/constant_pool/constant_pool.h"
+#include "status/status_code.h"
 
-struct ClassFile {
+struct ClassFile
+{
   uint32_t magic_number;
   uint16_t minor_version;
   uint16_t major_version;
@@ -23,7 +24,9 @@ struct ClassFile {
   uint16_t fields_count;
 };
 
-enum StatusCode class_file_read(const char* path, struct ClassFile* class_file);
-void class_file_free(struct ClassFile* class_file);
+enum StatusCode
+class_file_read(const char* path, struct ClassFile* class_file);
+void
+class_file_free(struct ClassFile* class_file);
 
-#endif //CLASS_FILE_H
+#endif // CLASS_FILE_H

@@ -1,6 +1,8 @@
 #include "memory/pointer.h"
 
-enum StatusCode pointer_init(struct Pointer* pointer) {
+enum StatusCode
+pointer_init(struct Pointer* pointer)
+{
   if (!pointer)
     return STATUS_BAD_ARG;
 

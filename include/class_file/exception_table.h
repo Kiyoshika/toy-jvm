@@ -3,7 +3,8 @@
 
 #include <stdint.h>
 
-struct ExceptionTable {
+struct ExceptionTable
+{
   uint16_t start_pc;
   uint16_t end_pc;
   uint16_t handler_pc;

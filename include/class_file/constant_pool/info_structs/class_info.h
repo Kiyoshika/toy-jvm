@@ -5,9 +5,10 @@
 
 #include "class_file/constant_pool/constant_pool_tag.h"
 
-struct ClassInfo {
+struct ClassInfo
+{
   enum ConstantPoolTag tag;
   uint16_t name_index;
 };
 
-#endif //CLASS_INFO_H
+#endif // CLASS_INFO_H

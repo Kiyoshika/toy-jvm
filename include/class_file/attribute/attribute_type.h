@@ -1,7 +1,8 @@
 #ifndef ATTRIBUTE_TYPE
 #define ATTRIBUTE_TYPE
 
-enum AttributeType {
+enum AttributeType
+{
   // non-required generic attribute types, can probably ignore
   ATTRIBUTE_TYPE_UNKNOWN,
   ATTRIBUTE_TYPE_CONSTANT_VALUE,

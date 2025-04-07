@@ -5,9 +5,10 @@
 
 #include "class_file/constant_pool/constant_pool_tag.h"
 
-struct FloatInfo {
+struct FloatInfo
+{
   enum ConstantPoolTag tag;
   uint32_t bytes;
 };
 
-#endif //FLOAT_INFO_H
+#endif // FLOAT_INFO_H

@@ -1,7 +1,8 @@
 #ifndef CLASS_ACCESS_FLAGS_H
 #define CLASS_ACCESS_FLAGS_H
 
-enum ClassAccessFlag {
+enum ClassAccessFlag
+{
   CLASS_ACC_PUBLIC = 0x0001,
   CLASS_ACC_FINAL = 0x0010,
   CLASS_ACC_SUPER = 0x0020,
@@ -12,4 +13,4 @@ enum ClassAccessFlag {
   CLASS_ACC_ENUM = 0x4000
 };
 
-#endif //CLASS_ACCESS_FLAGS_H
+#endif // CLASS_ACCESS_FLAGS_H

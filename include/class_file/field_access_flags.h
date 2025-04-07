@@ -1,7 +1,8 @@
 #ifndef FIELD_ACCESS_FLAGS_H
 #define FIELD_ACCESS_FLAGS_H
 
-enum FieldAccessFlags {
+enum FieldAccessFlags
+{
   FIELD_ACC_PUBLIC = 0x0001,
   FIELD_ACC_PRIVATE = 0x0002,
   FIELD_ACC_PROTECTED = 0x0004,
@@ -13,4 +14,4 @@ enum FieldAccessFlags {
   FIELD_ACC_ENUM = 0x4000,
 };
 
-#endif //FIELD_ACCESS_FLAGS_H
+#endif // FIELD_ACCESS_FLAGS_H

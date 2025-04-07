@@ -5,10 +5,11 @@
 
 #include "class_file/constant_pool/constant_pool_tag.h"
 
-struct FieldRefInfo {
+struct FieldRefInfo
+{
   enum ConstantPoolTag tag;
   uint16_t class_index;
   uint16_t name_and_type_index;
 };
 
-#endif //FIELD_REF_H
+#endif // FIELD_REF_H

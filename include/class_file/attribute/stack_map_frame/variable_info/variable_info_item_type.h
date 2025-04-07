@@ -1,7 +1,8 @@
 #ifndef VARIABLE_INFO_ITEM_TYPE_H
 #define VARIABLE_INFO_ITEM_TYPE_H
 
-enum VariableInfoItemType {
+enum VariableInfoItemType
+{
   VAR_INFO_ITEM_TOP = 0,
   VAR_INFO_ITEM_INTEGER = 1,
   VAR_INFO_ITEM_FLOAT = 2,

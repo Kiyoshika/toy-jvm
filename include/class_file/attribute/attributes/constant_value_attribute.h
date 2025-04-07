@@ -3,7 +3,8 @@
 
 #include <stdint.h>
 
-struct ConstantValueAttribute {
+struct ConstantValueAttribute
+{
   uint16_t attribute_name_index;
   uint32_t attribute_length;
   uint16_t constantvalue_index;

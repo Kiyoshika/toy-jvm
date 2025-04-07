@@ -5,7 +5,8 @@
 
 #include "class_file/attribute/stack_map_frame/verification_type_info.h"
 
-struct SameLocals1StackItemFrameExtendedType {
+struct SameLocals1StackItemFrameExtendedType
+{
   uint8_t frame_type;
   uint16_t offset_delta;
   union VerificationTypeInfo stack[1];

@@ -1,7 +1,8 @@
 #ifndef STATUS_CODE_H
 #define STATUS_CODE_H
 
-enum StatusCode {
+enum StatusCode
+{
   STATUS_OK = 0,
   STATUS_NO_MEM = 1,
   STATUS_BAD_ARG = 2,
@@ -9,4 +10,4 @@ enum StatusCode {
   STATUS_BAD_CLASS_FORMAT = 4,
 };
 
-#endif //STATUS_CODE_H
+#endif // STATUS_CODE_H

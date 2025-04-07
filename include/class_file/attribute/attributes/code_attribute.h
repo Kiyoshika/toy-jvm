@@ -1,10 +1,11 @@
 #ifndef CODE_ATTRIBUTE_H
 #define CODE_ATTRIBUTE_H
 
-#include <stdlib.h>
 #include <stdint.h>
+#include <stdlib.h>
 
-struct CodeAttribute {
+struct CodeAttribute
+{
   uint16_t attribute_name_index;
   uint32_t attribute_length;
   uint16_t max_stack;
@@ -17,6 +18,7 @@ struct CodeAttribute {
   struct AttributeInfo* attributes;
 };
 
-void CodeAttribute_free(struct CodeAttribute* attribute);
+void
+CodeAttribute_free(struct CodeAttribute* attribute);
 
 #endif

@@ -2,13 +2,14 @@
 #include <stdint.h>
 
 #include "memory/heap.h"
-#include "status/status_code.h"
 #include "memory/pointer.h"
+#include "status/status_code.h"
 
-static bool __check_pointer_collision(
-  const struct Heap* heap,
-  size_t alloc_size_bytes,
-  struct Pointer* furthest_pointer) {
+static bool
+__check_pointer_collision(const struct Heap* heap,
+                          size_t alloc_size_bytes,
+                          struct Pointer* furthest_pointer)
+{
 
   size_t alloc_lower_bound = heap->heap_start_search_idx;
   size_t alloc_upper_bound = heap->heap_start_search_idx + alloc_size_bytes - 1;
@@ -37,10 +38,11 @@ static bool __check_pointer_collision(
   return pointer_collision;
 }
 
-static bool __allocate_pointer(
-  struct Heap* heap,
-  size_t alloc_size_bytes,
-  struct Pointer* new_pointer) {
+static bool
+__allocate_pointer(struct Heap* heap,
+                   size_t alloc_size_bytes,
+                   struct Pointer* new_pointer)
+{
   new_pointer->heap_start_idx = heap->heap_start_search_idx;
   new_pointer->size_bytes = alloc_size_bytes;
   heap->heap_start_search_idx = heap->heap_start_search_idx + alloc_size_bytes;
@@ -49,7 +51,8 @@ static bool __allocate_pointer(
   struct Pointer* pointer_dest = &heap->pointers[heap->write_pointer_idx];
   memcpy(pointer_dest, new_pointer, sizeof(struct Pointer));
   heap->pointers_active++;
-  if ((double)heap->pointers_active / (double)heap->pointers_capacity > heap->pointer_max_capacity_ratio) {
+  if ((double)heap->pointers_active / (double)heap->pointers_capacity >
+      heap->pointer_max_capacity_ratio) {
     size_t new_capacity = heap->pointers_capacity * 2u;
     void* realloc_pointers_array = realloc(heap->pointers, new_capacity);
     if (!realloc_pointers_array)
@@ -70,9 +73,9 @@ static bool __allocate_pointer(
   return true;
 }
 
-static bool __resize_heap(
-  struct Heap* heap,
-  size_t alloc_size_bytes) {
+static bool
+__resize_heap(struct Heap* heap, size_t alloc_size_bytes)
+{
 
   // if we get a pointer larger than the doubling rule, need to continue
   // growing to accommodate that size
@@ -90,7 +93,9 @@ static bool __resize_heap(
   return true;
 }
 
-enum StatusCode Heap_init(struct Heap *heap, size_t size_bytes) {
+enum StatusCode
+Heap_init(struct Heap* heap, size_t size_bytes)
+{
   if (!heap || size_bytes == 0)
     return STATUS_BAD_ARG;
 
@@ -118,7 +123,9 @@ enum StatusCode Heap_init(struct Heap *heap, size_t size_bytes) {
   return STATUS_OK;
 }
 
-void Heap_free(struct Heap *heap) {
+void
+Heap_free(struct Heap* heap)
+{
   if (!heap)
     return;
 
@@ -129,10 +136,9 @@ void Heap_free(struct Heap *heap) {
   heap->pointers = NULL;
 }
 
-enum StatusCode Heap_allocate(
-  struct Heap* heap,
-  size_t size_bytes,
-  struct Pointer* new_pointer) {
+enum StatusCode
+Heap_allocate(struct Heap* heap, size_t size_bytes, struct Pointer* new_pointer)
+{
 
   if (!heap || size_bytes == 0 || !new_pointer)
     return STATUS_BAD_ARG;
@@ -142,7 +148,8 @@ enum StatusCode Heap_allocate(
     return init_pointer_status;
 
   while (heap->heap_start_search_idx < heap->heap_capacity) {
-    size_t remaining_heap_capacity = heap->heap_capacity - heap->heap_start_search_idx;
+    size_t remaining_heap_capacity =
+      heap->heap_capacity - heap->heap_start_search_idx;
     if (remaining_heap_capacity < size_bytes)
       if (!__resize_heap(heap, size_bytes))
         return STATUS_NO_MEM;
@@ -150,7 +157,8 @@ enum StatusCode Heap_allocate(
     // check for pointer collisions
     struct Pointer furthest_pointer;
     pointer_init(&furthest_pointer);
-    bool pointer_collision = __check_pointer_collision(heap, size_bytes, &furthest_pointer);
+    bool pointer_collision =
+      __check_pointer_collision(heap, size_bytes, &furthest_pointer);
 
     if (!pointer_collision) {
       __allocate_pointer(heap, size_bytes, new_pointer);
@@ -163,13 +171,16 @@ enum StatusCode Heap_allocate(
       return STATUS_OK;
     }
 
-    heap->heap_start_search_idx = furthest_pointer.heap_start_idx + furthest_pointer.size_bytes;
+    heap->heap_start_search_idx =
+      furthest_pointer.heap_start_idx + furthest_pointer.size_bytes;
   }
 
   return STATUS_OK;
 }
 
-void Heap_deallocate(struct Heap *heap, const struct Pointer *pointer) {
+void
+Heap_deallocate(struct Heap* heap, const struct Pointer* pointer)
+{
   if (!heap || !pointer)
     return;
 
@@ -189,26 +200,36 @@ void Heap_deallocate(struct Heap *heap, const struct Pointer *pointer) {
   }
 }
 
-enum StatusCode Heap_get_pointer_content(const struct Heap* heap, const struct Pointer* pointer, void* content) {
+enum StatusCode
+Heap_get_pointer_content(const struct Heap* heap,
+                         const struct Pointer* pointer,
+                         void* content)
+{
   if (!heap || !pointer)
     return STATUS_BAD_ARG;
 
   if (pointer->size_bytes == 0)
     return STATUS_BAD_ARG;
 
-  void* pointer_content_src = (uint8_t*)heap->byte_pool + pointer->heap_start_idx;
+  void* pointer_content_src =
+    (uint8_t*)heap->byte_pool + pointer->heap_start_idx;
   memcpy(content, pointer_content_src, pointer->size_bytes);
 
   return STATUS_OK;
 }
 
-enum StatusCode Heap_write_pointer_content(struct Heap* heap, const struct Pointer* pointer, const void* content) {
+enum StatusCode
+Heap_write_pointer_content(struct Heap* heap,
+                           const struct Pointer* pointer,
+                           const void* content)
+{
   if (!heap || !pointer)
     return STATUS_BAD_ARG;
 
   if (pointer->size_bytes == 0)
     return STATUS_BAD_ARG;
-  void* pointer_content_dest = (uint8_t*)heap->byte_pool + pointer->heap_start_idx;
+  void* pointer_content_dest =
+    (uint8_t*)heap->byte_pool + pointer->heap_start_idx;
   memcpy(pointer_content_dest, content, pointer->size_bytes);
 
   return STATUS_OK;

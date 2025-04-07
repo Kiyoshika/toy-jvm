@@ -5,10 +5,11 @@
 
 #include "class_file/constant_pool/constant_pool_tag.h"
 
-struct DoubleInfo {
+struct DoubleInfo
+{
   enum ConstantPoolTag tag;
   uint32_t high_bytes;
   uint32_t low_bytes;
 };
 
-#endif //DOUBLE_INFO_H
+#endif // DOUBLE_INFO_H

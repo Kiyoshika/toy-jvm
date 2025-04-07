@@ -1,6 +1,8 @@
 #include "class_file/attribute/attributes/exceptions_attribute.h"
 
-void ExceptionsAttribute_free(struct ExceptionsAttribute* attribute) {
+void
+ExceptionsAttribute_free(struct ExceptionsAttribute* attribute)
+{
   if (!attribute)
     return;
 

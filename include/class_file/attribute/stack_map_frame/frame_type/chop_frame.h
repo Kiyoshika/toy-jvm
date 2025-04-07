@@ -3,7 +3,8 @@
 
 #include <stdint.h>
 
-struct ChopFrameType {
+struct ChopFrameType
+{
   uint8_t frame_type;
   uint16_t offset_delta;
 };

@@ -5,11 +5,12 @@
 
 #include "class_file/attribute/stack_map_frame/verification_type_info.h"
 
-struct AppendFrameType {
+struct AppendFrameType
+{
   uint8_t frame_type;
   uint16_t offset_delta;
   // will be size frame_type - 251, with a maximum size of 3
-  uint8_t n_locals; 
+  uint8_t n_locals;
   union VerificationTypeInfo locals[3];
 };
 

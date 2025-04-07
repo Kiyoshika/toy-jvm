@@ -17,9 +17,11 @@
 #include "class_file/constant_pool/info_structs/string_info.h"
 #include "class_file/constant_pool/info_structs/utf8_info.h"
 
-struct ConstantPoolItem {
+struct ConstantPoolItem
+{
   enum ConstantPoolTag tag;
-  union item {
+  union item
+  {
     struct ClassInfo class_info;
     struct DoubleInfo double_info;
     struct FieldRefInfo field_ref_info;
@@ -37,4 +39,4 @@ struct ConstantPoolItem {
   } item;
 };
 
-#endif //CONSTANT_POOL_ITEM_H
+#endif // CONSTANT_POOL_ITEM_H

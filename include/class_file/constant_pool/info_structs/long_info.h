@@ -5,10 +5,11 @@
 
 #include "class_file/constant_pool/constant_pool_tag.h"
 
-struct LongInfo {
+struct LongInfo
+{
   enum ConstantPoolTag tag;
   uint32_t high_bytes;
   uint32_t low_bytes;
 };
 
-#endif //LONG_INFO_H
+#endif // LONG_INFO_H

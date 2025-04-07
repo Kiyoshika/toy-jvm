@@ -5,9 +5,10 @@
 
 #include "class_file/constant_pool/constant_pool_tag.h"
 
-struct IntegerInfo {
+struct IntegerInfo
+{
   enum ConstantPoolTag tag;
   uint32_t bytes;
 };
 
-#endif //INTEGER_INFO_H
+#endif // INTEGER_INFO_H

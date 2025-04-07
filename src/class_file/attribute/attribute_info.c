@@ -1,6 +1,8 @@
 #include "class_file/attribute/attribute_info.h"
 
-void attribute_info_free(struct AttributeInfo* attribute_info) {
+void
+attribute_info_free(struct AttributeInfo* attribute_info)
+{
   if (!attribute_info)
     return;
 

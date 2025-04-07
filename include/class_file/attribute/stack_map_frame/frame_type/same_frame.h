@@ -3,7 +3,8 @@
 
 #include <stdint.h>
 
-struct SameFrameType {
+struct SameFrameType
+{
   uint8_t frame_type;
 };
 

@@ -1,7 +1,8 @@
 #ifndef CONSTANT_POOL_TAG_H
 #define CONSTANT_POOL_TAG_H
 
-enum ConstantPoolTag {
+enum ConstantPoolTag
+{
   CONSTANT_POOL_CLASS = 7u,
   CONSTANT_POOL_FIELD_REF = 9u,
   CONSTANT_POOL_METHOD_REF = 10u,
@@ -18,4 +19,4 @@ enum ConstantPoolTag {
   CONSTANT_POOL_INVOKE_DYNAMIC = 18u
 };
 
-#endif //CONSTANT_POOL_TAG_H
+#endif // CONSTANT_POOL_TAG_H

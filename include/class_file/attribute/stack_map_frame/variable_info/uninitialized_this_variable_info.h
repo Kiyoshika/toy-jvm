@@ -4,10 +4,12 @@
 #include "class_file/attribute/stack_map_frame/variable_info/variable_info_item_type.h"
 #include "status/status_code.h"
 
-struct UninitializedThisVariableInfo {
+struct UninitializedThisVariableInfo
+{
   enum VariableInfoItemType tag;
 };
 
-enum StatusCode UninitializedThisVariableInfo_init(struct UninitializedThisVariableInfo* info);
+enum StatusCode
+UninitializedThisVariableInfo_init(struct UninitializedThisVariableInfo* info);
 
 #endif

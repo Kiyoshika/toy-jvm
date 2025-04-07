@@ -2,8 +2,11 @@
 #include "class_file/constant_pool/constant_pool.h"
 #include "util/file_util.h"
 
-static enum StatusCode _parse_interfaces(FILE* file, struct ClassFile* class_file) {
-  class_file->interfaces = calloc(class_file->interfaces_count, sizeof(uint16_t));
+static enum StatusCode
+_parse_interfaces(FILE* file, struct ClassFile* class_file)
+{
+  class_file->interfaces =
+    calloc(class_file->interfaces_count, sizeof(uint16_t));
   if (!class_file->interfaces)
     return STATUS_NO_MEM;
 
@@ -14,7 +17,9 @@ static enum StatusCode _parse_interfaces(FILE* file, struct ClassFile* class_fil
   return STATUS_OK;
 }
 
-enum StatusCode class_file_read(const char* path, struct ClassFile* class_file) {
+enum StatusCode
+class_file_read(const char* path, struct ClassFile* class_file)
+{
   if (!class_file)
     return STATUS_BAD_ARG;
 
@@ -24,7 +29,8 @@ enum StatusCode class_file_read(const char* path, struct ClassFile* class_file) 
 
   rewind(file);
 
-  // start parsing class_file file according to https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.4
+  // start parsing class_file file according to
+  // https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.4
 
   uint16_t u16_value = 0u;
   uint32_t u32_value = 0u;
@@ -47,7 +53,8 @@ enum StatusCode class_file_read(const char* path, struct ClassFile* class_file) 
 
   // initialize the constant pool and pass the current active
   // file pointer to start parsing
-  enum StatusCode status = constant_pool_init(&class_file->constant_pool, class_file->constant_pool_count);
+  enum StatusCode status = constant_pool_init(&class_file->constant_pool,
+                                              class_file->constant_pool_count);
   if (status != STATUS_OK)
     return status;
 
@@ -80,12 +87,14 @@ enum StatusCode class_file_read(const char* path, struct ClassFile* class_file) 
   fclose(file);
   return STATUS_OK;
 
-  error:
+error:
   fclose(file);
   return STATUS_IO_FAILED;
 }
 
-void class_file_free(struct ClassFile* class_file) {
+void
+class_file_free(struct ClassFile* class_file)
+{
   if (!class_file)
     return;
 

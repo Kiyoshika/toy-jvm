@@ -1,6 +1,8 @@
 #include "class_file/attribute/stack_map_frame/variable_info/top_variable_info.h"
 
-enum StatusCode TopVariableInfo_init(struct TopVariableInfo* info) {
+enum StatusCode
+TopVariableInfo_init(struct TopVariableInfo* info)
+{
   if (!info)
     return STATUS_BAD_ARG;
 

@@ -5,9 +5,10 @@
 
 #include "class_file/constant_pool/constant_pool_tag.h"
 
-struct MethodTypeInfo {
+struct MethodTypeInfo
+{
   enum ConstantPoolTag tag;
   uint16_t descriptor_index;
 };
 
-#endif //METHOD_TYPE_INFO_H
+#endif // METHOD_TYPE_INFO_H
