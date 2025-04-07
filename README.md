@@ -9,6 +9,16 @@ This is NOT meant to be a complete implementation, but at least a barebones work
 intermediate Java applications using at least a subset of the standard library and core Java 8 features.
 
 ## Development
+This is a C99 CMake project. 
 
-This is a C99 CMake project. CLion is used for actual development but can be ran with any typical CMake build (command
-line or your own editor.)
+* `mkdir build && cd build`
+* `cmake -DCMAKE_BUILD_TYPE=Debug ..`
+* `make`
+* (optional) `make test` to run tests
+
+This creates a `libjvm.a` library that contains the core JVM code and a `toy-jvm` executable (that is currently just a placeholder)
+
+## Code Style
+This repo uses the Mozilla style from `clang-format` (install with `sudo apt-get install clang-format`)
+
+Use `style_code.sh` to run the formatter manually (there is also a github action that runs when merging into main to commit formatting changes)
