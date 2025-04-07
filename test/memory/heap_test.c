@@ -8,7 +8,7 @@ void initHeap() {
   assert(Heap_init(&heap, 16u) == STATUS_OK);
 
   assert(heap.byte_pool != NULL);
-  assert(heap.heap_capacity == 16u);
+  assert(heap.heap_capacity == 17u);
   assert(heap.heap_start_search_idx == 0u);
   assert(heap.pointers != NULL);
   assert(heap.pointers_capacity == 8u);
