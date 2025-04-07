@@ -22,3 +22,6 @@ This creates a `libjvm.a` library that contains the core JVM code and a `toy-jvm
 This repo uses the Mozilla style from `clang-format` (install with `sudo apt-get install clang-format`)
 
 Use `style_code.sh` to run the formatter manually (there is also a github action that runs when merging into main to commit formatting changes)
+
+## What's Being Worked On?
+Currently finishing up implementing the attribute structures before parsing that data from the compiled class files. Current section: https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.7.6
