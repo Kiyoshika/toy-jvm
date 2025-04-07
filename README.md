@@ -21,4 +21,4 @@ This creates a `libjvm.a` library that contains the core JVM code and a `toy-jvm
 ## Code Style
 This repo uses the Mozilla style from `clang-format` (install with `sudo apt-get install clang-format`)
 
-Use `style_code.sh` to run the formatter manually, or it's also hooked in as a git pre-commit hook (will run when you `git commit`)
+Use `style_code.sh` to run the formatter manually (there is also a github action that runs when merging into main to commit formatting changes)
