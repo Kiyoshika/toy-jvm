@@ -2,7 +2,7 @@
 #include "class_file/class_access_flags.h"
 #include <assert.h>
 
-static const char* empty_main_class_path = "../../resources/compiled_class_files/EmptyMain.class";
+static const char* empty_main_class_path = "test/resources/compiled_class_files/EmptyMain.class";
 
 int main() {
   struct ClassFile class_file;
