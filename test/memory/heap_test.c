@@ -4,6 +4,7 @@
 #include "memory/heap.h"
 
 void initHeap() {
+  char* x = malloc(100);
   struct Heap heap;
   assert(Heap_init(&heap, 16u) == STATUS_OK);
 
