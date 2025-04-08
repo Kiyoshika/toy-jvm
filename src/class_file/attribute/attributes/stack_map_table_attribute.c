@@ -1,5 +1,5 @@
 #include "class_file/attribute/attributes/stack_map_table_attribute.h"
-#include "class_file/attribute/stack_map_frame/frame_type/frame_type.h"
+#include "class_file/attribute/attributes/stack_map_frame/frame_type/frame_type.h"
 
 void
 StackMapTableAttribute_free(struct StackMapTableAttribute* attribute)

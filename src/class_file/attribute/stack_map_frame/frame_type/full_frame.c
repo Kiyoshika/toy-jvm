@@ -1,4 +1,4 @@
-#include "class_file/attribute/stack_map_frame/frame_type/full_frame.h"
+#include "class_file/attribute/attributes/stack_map_frame/frame_type/full_frame.h"
 
 void
 full_frame_free(struct FullFrameType* frame)

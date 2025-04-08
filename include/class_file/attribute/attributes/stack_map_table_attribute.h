@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#include "class_file/attribute/stack_map_frame/stack_map_frame.h"
+#include "class_file/attribute/attributes/stack_map_frame/stack_map_frame.h"
 
 struct StackMapTableAttribute
 {
