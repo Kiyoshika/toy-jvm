@@ -24,4 +24,6 @@ This repo uses the Mozilla style from `clang-format` (install with `sudo apt-get
 Use `style_code.sh` to run the formatter manually (there is also a github action that runs when merging into main to commit formatting changes)
 
 ## What's Being Worked On?
-Currently finishing up implementing the attribute structures before parsing that data from the compiled class files. Current section: https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.7.6
+About to start parsing the attribute structures described in https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.7. The structs are defined in headers but not fully implemented. These will be implented while we are trying to parse the class files.
+
+Code needs a little bit of restructuring (`src/` folder has slightly fallen out of order with `include/`)

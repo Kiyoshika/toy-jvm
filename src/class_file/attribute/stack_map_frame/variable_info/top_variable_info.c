@@ -1,4 +1,4 @@
-#include "class_file/attribute/stack_map_frame/variable_info/top_variable_info.h"
+#include "class_file/attribute/attributes/stack_map_frame/variable_info/top_variable_info.h"
 
 enum StatusCode
 TopVariableInfo_init(struct TopVariableInfo* info)

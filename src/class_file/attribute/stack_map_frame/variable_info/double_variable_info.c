@@ -1,4 +1,4 @@
-#include "class_file/attribute/stack_map_frame/variable_info/double_variable_info.h"
+#include "class_file/attribute/attributes/stack_map_frame/variable_info/double_variable_info.h"
 
 enum StatusCode
 DoubleVariableInfo_init(struct DoubleVariableInfo* info)
