@@ -61,7 +61,7 @@ attribute_info_free(struct AttributeInfo* attribute_info)
         &attribute_info->attribute.bootstrap_methods);
       break;
     case ATTRIBUTE_TYPE_METHOD_PARAMETERS:
-      MethodParametersAttributes_free(
+      MethodParametersAttribute_free(
         &attribute_info->attribute.method_parameters);
       break;
     // any other attribute types that don't dynamically allocate, it's a no-op

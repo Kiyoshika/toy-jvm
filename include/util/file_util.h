@@ -1,10 +1,11 @@
 #ifndef FILE_UTIL_H
 #define FILE_UTIL_H
 
-#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
+
+#include "status/status_code.h"
 
 /**
  * Read at most 4 bytes from a file at a time and store it into a uint64_t.
@@ -16,11 +17,11 @@
  */
 uint64_t
 _read_bytes_from_file(uint8_t* buffer, size_t read_bytes);
-bool
+enum StatusCode
 _read_u32_from_file(FILE* file, uint32_t* value);
-bool
+enum StatusCode
 _read_u16_from_file(FILE* file, uint16_t* value);
-bool
+enum StatusCode
 _read_u8_from_file(FILE* file, uint8_t* value);
 
 #endif // FILE_UTIL_H
