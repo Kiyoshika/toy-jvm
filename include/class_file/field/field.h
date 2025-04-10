@@ -19,6 +19,7 @@ struct Field
   struct AttributeInfo* attributes;
 };
 
+
 enum StatusCode
 field_init(struct Field* field);
 
