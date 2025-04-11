@@ -2,15 +2,23 @@
 #define RUNTIME_INVISIBLE_PARAMETER_ANNOTATIONS_ATTRIBUTE_H
 
 #include <stdint.h>
+#include <stdio.h>
+
+#include "class_file/attribute/attribute_header.h"
+#include "status/status_code.h"
 
 struct RuntimeInvisibleParameterAnnotationsAttribute
 {
-  uint16_t attribute_name_index;
-  uint32_t attribute_length;
+  struct AttributeHeader header;
   uint8_t num_parameters;
   struct RuntimeInvisibleParameterAnnotationsAttributeInfo*
     parameter_annotations;
 };
+
+enum StatusCode
+RuntimeInvisibleParameterAnnotationsAttribute_parse(
+  struct RuntimeInvisibleParameterAnnotationsAttribute* attribute,
+  FILE* file);
 
 void
 RuntimeInvisibleParameterAnnotationsAttribute_free(

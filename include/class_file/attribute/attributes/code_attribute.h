@@ -2,12 +2,15 @@
 #define CODE_ATTRIBUTE_H
 
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
+
+#include "class_file/attribute/attribute_header.h"
+#include "status/status_code.h"
 
 struct CodeAttribute
 {
-  uint16_t attribute_name_index;
-  uint32_t attribute_length;
+  struct AttributeHeader header;
   uint16_t max_stack;
   uint16_t max_locals;
   uint32_t code_length;
@@ -17,6 +20,9 @@ struct CodeAttribute
   uint16_t attributes_count;
   struct AttributeInfo* attributes;
 };
+
+enum StatusCode
+CodeAttribute_parse(struct CodeAttribute* attribute, FILE* file);
 
 void
 CodeAttribute_free(struct CodeAttribute* attribute);

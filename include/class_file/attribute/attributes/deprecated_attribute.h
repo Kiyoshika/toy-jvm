@@ -2,11 +2,17 @@
 #define DEPRECATED_ATTRIBUTE_H
 
 #include <stdint.h>
+#include <stdio.h>
+
+#include "class_file/attribute/attribute_header.h"
+#include "status/status_code.h"
 
 struct DeprecatedAttribute
 {
-  uint16_t attribute_name_index;
-  uint32_t attribute_length;
+  struct AttributeHeader header;
 };
+
+enum StatusCode
+DeprecatedAttribute_parse(struct DeprecatedAttribute* attribute, FILE* file);
 
 #endif

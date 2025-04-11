@@ -1,4 +1,7 @@
 #include "class_file/field/field.h"
+#include "class_file/attribute/attribute_info.h"
+#include "class_file/constant_pool/constant_pool_item.h"
+#include "class_file/constant_pool/constant_pool_tag.h"
 #include "util/file_util.h"
 
 enum StatusCode
@@ -60,9 +63,18 @@ field_parse_attributes(struct Field* field,
   if ((status = _read_u32_from_file(file, &attribute_length)) != STATUS_OK)
     return status;
 
-  // TODO: grab attribute from constant pool and verify it's UTF8
-  // get name and pull correct attribute struct to parse, calling
-  // attribute_parse()
+  const struct ConstantPoolItem* attribute =
+    constant_pool_get_item(&class_file->constant_pool, attribute_name_index);
+
+  if (!attribute || attribute->tag != CONSTANT_POOL_UTF8)
+    return STATUS_BAD_CLASS_FORMAT;
+
+  const struct Utf8Info* utf8_info = &attribute->item.utf8_info;
+
+  const char* attribute_name = utf8_info->bytes;
+
+  struct AttributeInfo attribute_info;
+  AttributeInfo_parse(&attribute_info, file, attribute_name);
 
   return status;
 }

@@ -2,14 +2,22 @@
 #define RUNTIME_VISIBLE_TYPE_ANNOTATIONS_ATTRIBUTE_H
 
 #include <stdint.h>
+#include <stdio.h>
+
+#include "class_file/attribute/attribute_header.h"
+#include "status/status_code.h"
 
 struct RuntimeVisibleTypeAnnotationsAttribute
 {
-  uint16_t attribute_name_index;
-  uint32_t attribute_length;
+  struct AttributeHeader header;
   uint16_t num_annotations;
   struct TypeAnnotation* annotations;
 };
+
+enum StatusCode
+RuntimeVisibleTypeAnnotationsAttribute_parse(
+  struct RuntimeVisibleTypeAnnotationsAttribute* attribute,
+  FILE* file);
 
 void
 RuntimeVisibleTypeAnnotationsAttribute_free(

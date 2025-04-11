@@ -2,15 +2,23 @@
 #define RUNTIME_VISIBLE_PARAMETER_ANNOTATIONS_ATTRIBUTE_H
 
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
+
+#include "class_file/attribute/attribute_header.h"
+#include "status/status_code.h"
 
 struct RuntimeVisibleParameterAnnotationsAttribute
 {
-  uint16_t attribute_name_index;
-  uint32_t attribute_length;
+  struct AttributeHeader header;
   uint8_t num_parameters;
   struct RuntimeVisibleParameterAnnotationsAttributeInfo* parameter_annotations;
 };
+
+enum StatusCode
+RuntimeVisibleParameterAnnotationsAttribute_parse(
+  struct RuntimeVisibleParameterAnnotationsAttribute* attribute,
+  FILE* file);
 
 void
 RuntimeVisibleParameterAnnotationsAttribute_free(

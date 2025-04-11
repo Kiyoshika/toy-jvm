@@ -1,7 +1,29 @@
 #include "class_file/attribute/attribute_info.h"
+#include <string.h>
+
+enum StatusCode
+AttributeInfo_parse(struct AttributeInfo* attribute_info,
+                    FILE* file,
+                    const char* attribute_name)
+{
+  if (!attribute_info || !file || !attribute_name)
+    return STATUS_BAD_ARG;
+
+  // TODO: turn these comparisons into bsearch?
+
+  if (strcmp(attribute_name, "ConstantValue") == 0)
+    return ConstantValueAttribute_parse(
+      &attribute_info->attribute.constant_value, file);
+
+  // TODO: for unknown attributes, we can use the attribute length
+  // and skip the text. This is where custom attributes from different
+  // compilers can be handled, but this JVM will just ignore them.
+  // Maybe log an info message or something
+  return STATUS_BAD_CLASS_FORMAT;
+}
 
 void
-attribute_info_free(struct AttributeInfo* attribute_info)
+AttributeInfo_free(struct AttributeInfo* attribute_info)
 {
   if (!attribute_info)
     return;

@@ -2,17 +2,22 @@
 #define BOOTSTRAP_METHODS_ATTRIBUTE_H
 
 #include <stdint.h>
+#include <stdio.h>
 
+#include "class_file/attribute/attribute_header.h"
 #include "class_file/attribute/attributes/bootstrap_methods_attribute_info.h"
+#include "status/status_code.h"
 
 struct BootstrapMethodsAttribute
 {
-  uint16_t attribute_name_index;
-  uint32_t attribute_length;
+  struct AttributeHeader header;
   uint16_t num_bootstrap_methods;
   struct BootstrapMethodsAttributeInfo* bootstrap_methods;
 };
 
+enum StatusCode
+BootstrapMethodsAttribute_parse(struct BootstrapMethodsAttribute* attribute,
+                                FILE* file);
 void
 BootstrapMethodsAttribute_free(struct BootstrapMethodsAttribute* attribute);
 

@@ -2,14 +2,22 @@
 #define SOURCE_DEBUG_EXTENSION_H
 
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
+
+#include "class_file/attribute/attribute_header.h"
+#include "status/status_code.h"
 
 struct SourceDebugExtensionAttribute
 {
-  uint16_t attribute_name_index;
-  uint32_t attribute_length;
+  struct AttributeHeader header;
   uint8_t* debug_extension;
 };
+
+enum StatusCode
+SourceDebugExtensionAttribute_parse(
+  struct SourceDebugExtensionAttribute* attribute,
+  FILE* file);
 
 void
 SourceDebugExtensionAttribute_free(
