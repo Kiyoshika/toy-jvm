@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 #include "class_file/attribute/attribute_header.h"
+#include "class_file/constant_pool/constant_pool.h"
 #include "status/status_code.h"
 
 struct CodeAttribute
@@ -22,7 +23,9 @@ struct CodeAttribute
 };
 
 enum StatusCode
-CodeAttribute_parse(struct CodeAttribute* attribute, FILE* file);
+CodeAttribute_parse(struct CodeAttribute* attribute,
+                    FILE* file,
+                    const struct ConstantPool* constant_pool);
 
 void
 CodeAttribute_free(struct CodeAttribute* attribute);

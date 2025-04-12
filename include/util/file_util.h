@@ -17,11 +17,17 @@
  */
 uint64_t
 _read_bytes_from_file(uint8_t* buffer, size_t read_bytes);
+
 enum StatusCode
 _read_u32_from_file(FILE* file, uint32_t* value);
+
 enum StatusCode
 _read_u16_from_file(FILE* file, uint16_t* value);
+
 enum StatusCode
 _read_u8_from_file(FILE* file, uint8_t* value);
+
+enum StatusCode
+_read_nbytes_from_file(FILE* file, uint8_t* buffer, size_t buffer_len);
 
 #endif // FILE_UTIL_H

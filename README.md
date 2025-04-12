@@ -27,3 +27,5 @@ Use `style_code.sh` to run the formatter manually (there is also a github action
 Parsing field attributes (`src/class_file/field.c`) which needs to implement all parse methods for each attribute (`src/class_file/attribute/attributes/`)
 
 Code needs a little bit of restructuring (`src/` folder has slightly fallen out of order with `include/`)
+
+Also need to write some unit tests for attributes, etc. to complement the full class file tests (which can be thought of as "integration" tests in a way)

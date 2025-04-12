@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "class_file/attribute/attribute_header.h"
 #include "class_file/attribute/attributes/bootstrap_methods_attribute_info.h"

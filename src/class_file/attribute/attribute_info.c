@@ -1,10 +1,53 @@
 #include "class_file/attribute/attribute_info.h"
+#include "class_file/attribute/attributes/annotation_default_attribute.h"
 #include <string.h>
 
 enum StatusCode
 AttributeInfo_parse(struct AttributeInfo* attribute_info,
                     FILE* file,
-                    const char* attribute_name)
+                    const struct ConstantPool* constant_pool)
+{
+  if (!attribute_info || !file)
+    return STATUS_BAD_ARG;
+
+  enum StatusCode status = STATUS_OK;
+
+  if ((status = AttributeHeader_parse(&attribute_info->header, file)) !=
+      STATUS_OK)
+    return status;
+
+  const struct ConstantPoolItem* item = constant_pool_get_item(
+    constant_pool, attribute_info->header.attribute_name_index);
+  if (!item)
+    return STATUS_BAD_CLASS_FORMAT;
+
+  // attribute name index must point to a UTF8 info within the constant pool
+  const struct Utf8Info* utf8_info = &item->item.utf8_info;
+  if (!utf8_info)
+    return STATUS_BAD_CLASS_FORMAT;
+
+  const char* attribute_name = utf8_info->bytes;
+
+  // TODO: worth it to use bsearch? We don't have many items... would need perf
+  // testing
+
+  if (strncmp(
+        attribute_name, "AnnotationDefaultAttribute", utf8_info->length) == 0) {
+    attribute_info->type = ATTRIBUTE_TYPE_ANNOTATION_DEFAULT;
+    if ((status = AnnotationDefaultAttribute_parse(
+           &attribute_info->attribute.annotation_default, file)) != STATUS_OK)
+      return status;
+  }
+  // else if ...
+  // else (ATTRIBUTE_TYPE_UNKNOWN)
+
+  // TODO: finish this for all remaining attributes
+}
+
+enum StatusCode
+AttributeInfo_parse_by_name(struct AttributeInfo* attribute_info,
+                            FILE* file,
+                            const char* attribute_name)
 {
   if (!attribute_info || !file || !attribute_name)
     return STATUS_BAD_ARG;

@@ -1,5 +1,4 @@
 #include "class_file/class_file.h"
-#include "class_file/attribute/parse_attributes.h"
 #include "class_file/constant_pool/constant_pool.h"
 #include "class_file/field/field.h"
 #include "util/file_util.h"

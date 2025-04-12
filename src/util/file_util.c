@@ -52,3 +52,15 @@ _read_u8_from_file(FILE* file, uint8_t* value)
   *value = _read_bytes_from_file(buffer, 1u);
   return STATUS_OK;
 }
+
+/**
+ * Read [buffer_len] bytes from file and write it into [buffer].
+ * Assumes that [buffer] is already pre-allocated to the appropriate size
+ * and is a valid address.
+ */
+enum StatusCode
+_read_nbytes_from_file(FILE* file, uint8_t* buffer, size_t buffer_len)
+{
+  if (!fread(buffer, buffer_len, 1u, file))
+    return STATUS_IO_FAILED;
+}
