@@ -44,7 +44,7 @@ struct AttributeInfo
     struct InnerClassesAttribute inner_classes;
     struct LineNumberTableAttribute line_number_table;
     struct MethodParametersAttribute method_parameters;
-    struct SignatureAttribute signature_attribute;
+    struct SignatureAttribute signature;
     struct StackMapTableAttribute stack_map_table;
     struct SyntheticAttribute synthetic;
     struct SourceFileAttribute source_file;
