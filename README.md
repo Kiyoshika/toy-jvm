@@ -24,6 +24,6 @@ This repo uses the Mozilla style from `clang-format` (install with `sudo apt-get
 Use `style_code.sh` to run the formatter manually (there is also a github action that runs when merging into main to commit formatting changes)
 
 ## What's Being Worked On?
-Starting to parse attributes from class files. Complete `field_parse_attributes` in `src/class_file/field.c`.
+Parsing field attributes (`src/class_file/field.c`) which needs to implement all parse methods for each attribute (`src/class_file/attribute/attributes/`)
 
 Code needs a little bit of restructuring (`src/` folder has slightly fallen out of order with `include/`)
