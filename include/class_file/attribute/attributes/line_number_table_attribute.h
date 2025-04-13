@@ -13,7 +13,7 @@ struct LineNumberTableAttribute
 {
   struct AttributeHeader header;
   uint16_t line_number_table_length;
-  struct LineNumberTableAttributeInfo line_number_table;
+  struct LineNumberTableAttributeInfo* line_number_table;
 };
 
 enum StatusCode

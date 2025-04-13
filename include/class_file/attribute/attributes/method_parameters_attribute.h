@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "class_file/attribute/attribute_header.h"
 #include "status/status_code.h"
