@@ -2,14 +2,22 @@
 #define METHOD_PARAMETERS_ATTRIBUTE_H
 
 #include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "class_file/attribute/attribute_header.h"
+#include "status/status_code.h"
 
 struct MethodParametersAttribute
 {
-  uint16_t attribute_name_index;
-  uint32_t attribute_length;
+  struct AttributeHeader header;
   uint8_t parameters_count;
   struct MethodParametersAttributeInfo* parameters;
 };
+
+enum StatusCode
+MethodParametersAttribute_parse(struct MethodParametersAttribute* attribute,
+                                FILE* file);
 
 void
 MethodParametersAttribute_free(struct MethodParametersAttribute* attribute);

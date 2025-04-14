@@ -20,35 +20,47 @@ _read_bytes_from_file(uint8_t* buffer, size_t read_bytes)
   return value;
 }
 
-bool
+enum StatusCode
 _read_u32_from_file(FILE* file, uint32_t* value)
 {
   uint8_t buffer[4] = { 0 };
   if (!fread(buffer, 1u, 4u, file))
-    return false;
+    return STATUS_IO_FAILED;
 
   *value = _read_bytes_from_file(buffer, 4u);
-  return true;
+  return STATUS_OK;
 }
 
-bool
+enum StatusCode
 _read_u16_from_file(FILE* file, uint16_t* value)
 {
   uint8_t buffer[2] = { 0 };
   if (!fread(buffer, 1u, 2u, file))
-    return false;
+    return STATUS_IO_FAILED;
 
   *value = _read_bytes_from_file(buffer, 2u);
-  return true;
+  return STATUS_OK;
 }
 
-bool
+enum StatusCode
 _read_u8_from_file(FILE* file, uint8_t* value)
 {
   uint8_t buffer[1] = { 0 };
   if (!fread(buffer, 1u, 1u, file))
-    return false;
+    return STATUS_IO_FAILED;
 
   *value = _read_bytes_from_file(buffer, 1u);
-  return true;
+  return STATUS_OK;
+}
+
+/**
+ * Read [buffer_len] bytes from file and write it into [buffer].
+ * Assumes that [buffer] is already pre-allocated to the appropriate size
+ * and is a valid address.
+ */
+enum StatusCode
+_read_nbytes_from_file(FILE* file, uint8_t* buffer, size_t buffer_len)
+{
+  if (!fread(buffer, buffer_len, 1u, file))
+    return STATUS_IO_FAILED;
 }

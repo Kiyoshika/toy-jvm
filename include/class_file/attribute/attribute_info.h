@@ -25,12 +25,13 @@
 #include "class_file/attribute/attributes/source_file_attribute.h"
 #include "class_file/attribute/attributes/stack_map_table_attribute.h"
 #include "class_file/attribute/attributes/synthetic_attribute.h"
+#include "class_file/constant_pool/constant_pool.h"
+#include "status/status_code.h"
 
 struct AttributeInfo
 {
   enum AttributeType type;
-  uint16_t attribute_name_index;
-  uint32_t attribute_length;
+  struct AttributeHeader header;
   union attribute
   {
     struct AnnotationDefaultAttribute annotation_default;
@@ -43,7 +44,7 @@ struct AttributeInfo
     struct InnerClassesAttribute inner_classes;
     struct LineNumberTableAttribute line_number_table;
     struct MethodParametersAttribute method_parameters;
-    struct SignatureAttribute signature_attribute;
+    struct SignatureAttribute signature;
     struct StackMapTableAttribute stack_map_table;
     struct SyntheticAttribute synthetic;
     struct SourceFileAttribute source_file;
@@ -59,7 +60,11 @@ struct AttributeInfo
   } attribute;
 };
 
+enum StatusCode
+AttributeInfo_parse(struct AttributeInfo* attribute_info,
+                    FILE* file,
+                    const struct ConstantPool* constant_pool);
 void
-attribute_info_free(struct AttributeInfo* attribute_info);
+AttributeInfo_free(struct AttributeInfo* attribute_info);
 
 #endif // ATTRIBUTE_INFO_H

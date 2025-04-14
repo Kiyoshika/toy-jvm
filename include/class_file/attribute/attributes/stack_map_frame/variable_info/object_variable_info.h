@@ -1,5 +1,5 @@
 #ifndef OBJECT_VARIABLE_INFO_H
-#define OBJECT_VARIALE_INFO_H
+#define OBJECT_VARIABLE_INFO_H
 
 #include <stdint.h>
 

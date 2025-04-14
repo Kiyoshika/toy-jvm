@@ -2,14 +2,23 @@
 #define LOCAL_VARIABLE_TYPE_TABLE_ATTRIBUTE_H
 
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
+
+#include "class_file/attribute/attribute_header.h"
+#include "status/status_code.h"
 
 struct LocalVariableTypeTableAttribute
 {
-  uint16_t attribute_name_index;
-  uint32_t attribute_length;
+  struct AttributeHeader header;
+  uint16_t local_variable_type_table_length;
   struct LocalVariableTypeTableAttributeInfo* local_variable_type_table;
 };
+
+enum StatusCode
+LocalVariableTypeTableAttribute_parse(
+  struct LocalVariableTypeTableAttribute* attribute,
+  FILE* file);
 
 void
 LocalVariableTypeTableAttribute_free(
