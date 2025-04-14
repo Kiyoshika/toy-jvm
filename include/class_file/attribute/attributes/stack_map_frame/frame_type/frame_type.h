@@ -15,6 +15,6 @@ enum FrameType
 };
 
 enum FrameType
-frame_type_get(uint8_t value);
+FrameType_get(uint8_t value);
 
 #endif

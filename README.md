@@ -25,6 +25,7 @@ Use `style_code.sh` to run the formatter manually (there is also a github action
 
 ## What's Being Worked On?
 Parsing field attributes (`src/class_file/field.c`) which needs to implement all parse methods for each attribute (`src/class_file/attribute/attributes/`)
+* Specifically now working on parsing the different frame types in `src/class_file/attribute/attributes/stack_map_frame/frame_type`
 
 Code needs a little bit of restructuring (`src/` folder has slightly fallen out of order with `include/`)
 

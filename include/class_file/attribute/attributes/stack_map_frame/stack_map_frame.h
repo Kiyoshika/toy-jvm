@@ -1,17 +1,21 @@
 #ifndef STACK_MAP_FRAME_H
 #define STACK_MAP_FRAME_H
 
+#include <stdio.h>
+
 #include "class_file/attribute/attributes/stack_map_frame/frame_type/append_frame.h"
 #include "class_file/attribute/attributes/stack_map_frame/frame_type/chop_frame.h"
+#include "class_file/attribute/attributes/stack_map_frame/frame_type/frame_type.h"
 #include "class_file/attribute/attributes/stack_map_frame/frame_type/full_frame.h"
 #include "class_file/attribute/attributes/stack_map_frame/frame_type/same_frame.h"
 #include "class_file/attribute/attributes/stack_map_frame/frame_type/same_frame_extended.h"
 #include "class_file/attribute/attributes/stack_map_frame/frame_type/same_locals_1_stack_item_frame.h"
 #include "class_file/attribute/attributes/stack_map_frame/frame_type/same_locals_1_stack_item_frame_extended.h"
+#include "status/status_code.h"
 
 struct StackMapFrame
 {
-  uint8_t frame_type;
+  enum FrameType frame_type; // uint8_t
   union type
   {
     struct SameFrameType same_frame;
@@ -25,7 +29,10 @@ struct StackMapFrame
   } type;
 };
 
+enum StatusCode
+StackMapFrame_parse(struct StackMapFrame* frame, FILE* file);
+
 void
-stack_map_frame_free(struct StackMapFrame* frame);
+StackMapFrame_free(struct StackMapFrame* frame);
 
 #endif
